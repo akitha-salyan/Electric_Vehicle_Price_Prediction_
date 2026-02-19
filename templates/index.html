@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EV Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🚗 Electric Vehicle Price Predictor</h1>
+
+    <form action="/predict" method="post">
+
+        <div class="form-group">
+            <label>Battery Capacity (KWH)</label>
+            <input type="number" step="any" name="kwh"
+                   placeholder="Example: 30 - 120"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label>Range (km)</label>
+            <input type="number" step="any" name="range"
+                   placeholder="Example: 150 - 600"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label>Efficiency (Wh/km)</label>
+            <input type="number" step="any" name="efficiency"
+                   placeholder="Example: 130 - 250"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label>Fast Charge Speed (km/h)</label>
+            <input type="number" step="any" name="fast_charge"
+                   placeholder="Example: 200 - 900"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label>Top Speed (km/h)</label>
+            <input type="number" step="any" name="top_speed"
+                   placeholder="Example: 120 - 250"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label>Acceleration (0–100 km/h in seconds)</label>
+            <input type="number" step="any" name="acceleration"
+                   placeholder="Example: 3.0 - 12.0"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label>Drive Type</label>
+            <select name="drive" required>
+                <option value="">-- Select Drive Type --</option>
+                <option value="1">Front Wheel Drive</option>
+                <option value="2">Rear Wheel Drive</option>
+                <option value="3">All Wheel Drive</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Number of Seats</label>
+            <input type="number" name="seats"
+                   placeholder="Example: 2 - 7"
+                   required>
+        </div>
+
+        <button type="submit">Predict Price</button>
+
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
